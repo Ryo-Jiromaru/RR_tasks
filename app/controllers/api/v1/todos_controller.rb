@@ -1,8 +1,10 @@
 class Api::V1::TodosController < ApplicationController
+     include ActionController::MimeResponds
     
     def index
-        todos = Todo.all
-        render json: todos
+        genres = Genre.all
+        genre = Genre.find(1)
+        render json: genres, include: [:todos]
     end
 
 end

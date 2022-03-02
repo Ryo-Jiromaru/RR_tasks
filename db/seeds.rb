@@ -5,8 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+genres = [[id:1, name:'英語'],[id:2, name:'プログラミング']]
 
-todos = [[id:1, title:'英語', about:'キクタン英単語'],[id:2, title:'プログラミング', about:'ReactとRailsのマイクロアプリケーション化']]
+genres.each do |genre|
+    Genre.create(genre)
+end
+
+todos = [[id:1, about:'キクタン英単語', genre_id:1],[id:2, about:'ReactとRailsのマイクロアプリケーション化', genre_id:2]]
 
 todos.each do |todo|
     Todo.create(todo)

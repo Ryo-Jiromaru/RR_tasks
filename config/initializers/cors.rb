@@ -7,13 +7,13 @@
 
 # 以下オリジン間リソース共有設定で必要になる可能性があるもの
 
-# Rails.application.config.middleware.insert_before 0, Rack::Cors do
-#   allow do
-#     origins 'http://localhost:3001'
-#     resource '*',
-#       headers: :any,
-#       methods: [:get, :post, :put, :patch, :delete, :options, :head],
-#       credentials: ['X-CSRF-Token'],
-#       expose: %w[access-token uid client expiry]
-#   end
-# end
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    origins 'http://localhost:3001'
+    resource '*',
+      headers: :any,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head],
+      credentials: ['X-CSRF-Token'],
+      expose: %w[access-token uid client expiry]
+  end
+end

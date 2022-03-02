@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_22_081850) do
+ActiveRecord::Schema.define(version: 2022_03_02_081850) do
 
-  create_table "todos", force: :cascade do |t|
-    t.string "title"
-    t.string "about"
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "todos", force: :cascade do |t|
+    t.string "about"
+    t.integer "genre_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_todos_on_genre_id"
+  end
+
+  add_foreign_key "todos", "genres"
 end
