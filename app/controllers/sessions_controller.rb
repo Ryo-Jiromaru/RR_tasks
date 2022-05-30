@@ -5,9 +5,11 @@ class SessionsController < ApplicationController
 
         # password_digestとsession_paramsのpasswordが一致しているか否かの条件分岐
         if @user && @user.authenticate(session_params[:password])
+            logger.debug("ログインが走って成功してるパターン")
             login!
             render json: { logged_in: true, user: @user}
         else
+            logger.debug("ログインが走って成功してるパターン")
             render json: {status: 401, errors: ['認証に失敗しました。', '正しいメールアドレス・パスワードを入力し直すか、新規登録を行ってください。']}
         end
     end
@@ -18,12 +20,15 @@ class SessionsController < ApplicationController
         render json: { status: 200, logged_out: true}
     end
 
-    # ユーザーのログイン状態を追跡する
+    # ユーザーのログイン状態を追跡してreactへ返す
     def logged_in?
+        logger.debug(@current_user.inspect)
         if @current_user
+            logger.debug("ログイン状態である")
             render json: { logged_in: true, user: current_user }
         else
-            render json {logged_in: false, message: 'ユーザーが存在しません'}
+            logger.debug("ログイン状態でない")
+            render json: { logged_in: false, message: 'ユーザーが存在しません'}
         end
     end
 
