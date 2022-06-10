@@ -2,8 +2,9 @@ class Api::V1::TodosController < ApplicationController
      include ActionController::MimeResponds
     
     def index
-        genres = Genre.all
-        genre = Genre.find(1)
+        genres = Genre.where(user_id:@current_user.id)
+        logger.debug("▽genres▽")
+        logger.debug(genres.inspect)
         render json: genres, include: [:todos]
     end
 

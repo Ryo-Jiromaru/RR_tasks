@@ -9,18 +9,18 @@ class ApplicationController < ActionController::API
 
 
     def login!
-        logger.debug("login!ヘルパーが走ってる")
+        # logger.debug("login!ヘルパーが走ってる")
         session[:user_id] = @user.id
-        logger.debug("▽session[:user_id]▽")
-        logger.debug(session[:user_id].inspect)
+        # logger.debug("▽session[:user_id]▽")
+        # logger.debug(session[:user_id].inspect)
     end
 
     def current_user
-        logger.debug("current_userヘルパーが走ってる")
-        logger.debug("▽session[:user_id]▽")
-        logger.debug(session[:user_id])
+        # logger.debug("current_userヘルパーが走ってる")
+        # logger.debug("▽session[:user_id]▽")
+        # logger.debug(session[:user_id])
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
-        logger.debug("▽@current_user▽")
-        logger.debug(@current_user.inspect)
+        # logger.debug("▽@current_user▽")
+        # logger.debug(@current_user.inspect)
     end
 end

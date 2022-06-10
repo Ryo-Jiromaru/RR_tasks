@@ -22,10 +22,8 @@ class SessionsController < ApplicationController
 
     # ユーザーのログイン状態を追跡してreactへ返す
     def logged_in?
-        logger.debug(@current_user.inspect)
         if @current_user
-            logger.debug("ログイン状態である")
-            render json: { logged_in: true, user: current_user }
+            render json: { logged_in: true, user: @current_user }
         else
             logger.debug("ログイン状態でない")
             render json: { logged_in: false, message: 'ユーザーが存在しません'}
